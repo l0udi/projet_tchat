@@ -3,63 +3,69 @@
 if (isset($_POST['action']))
 {
 	$action = $_POST['action'];
+	require('models/User.class.php');
+	require('models/UserManager.class.php');
+	$userManager = new UserManager($db);
+
 	if ($action == 'login')
 	{
-		if (isset($_POST['login'], $_POST['hash']))
+		if (isset($_POST['login'], $_POST['password']))
 		{
-			$login = $_POST['login'];
-			$hash = $_POST['hash'];
-
-			$user = new User();
-			$user->setLogin($login);
-			$user->initPassword($hash, $confirm);
-
-			$login = mysqli_real_escape_string($db, $login);
-			$query = "SELECT * FROM user WHERE login='".$login."'";
-			$result = mysqli_query($db, $query);
-			if ($result)
+			try
 			{
-				$users = mysqli_fetch_assoc($result);
-				if ($users)
+				$user = $userManager->getByLogin($_POST['login']);
+				if ($user->verifPassword($_POST['password']))
 				{
-					$_SESSION['id'] = $users['id'];
-					$_SESSION['login'] = $users['login'];
-					$_SESSION['admin'] = $users['admin'];
-					header('Location: home');
+					$_SESSION['id'] = $user->getId();
+					$_SESSION['login'] = $user->getLogin();
+					header('Location: tchat');
 					exit;
 				}
-				else
-					$error = "Erreur interne au serveur";
+			}
+			catch (Exception $e)
+			{
+				$error = $e->getMessage();
 			}
 		}
+		
 	}
 // ----------------------CREER UN COMPTE -----------------
 	else if ($action == 'create')
 	{
 		if (isset($_POST['login'], $_POST['hash'], $_POST['confirm']))
 		{	
-			$login = $_POST['login'];
-			$hash = $_POST['hash'];
-			$confirm = $_POST['confirm'];
-
-			$user = new User();
-			$user->setLogin($login);
-			$user->initPassword($hash, $confirm);
-
-
-			$login = mysqli_real_escape_string($db, $login);
-			$hash = mysqli_real_escape_string($db, $hash);
-
-			$query = "INSERT INTO user (login, hash) VALUES('".$login."', '".$hash."')";
-			$result = mysqli_query($db, $query);
-			if ($result === false)
-				$error = "Erreur interne au serveur";
-			else
+			try
 			{
-
+				$user = $userManager->create($_POST['login'],$_POST['hash'], $_POST['confirm']);
 				header('Location: login');
 				exit;
 			}
+			catch (Exception $e)
+			{
+				$error = $e->getMessage();
+			}
+			// $login = $_POST['login'];
+			// $hash = $_POST['hash'];
+			// $confirm = $_POST['confirm'];
+
+			// $user = new User();
+			// $user->setLogin($login);
+			// $user->initPassword($hash, $confirm);
+
+
+			// $login = mysqli_real_escape_string($db, $login);
+			// $hash = mysqli_real_escape_string($db, $hash);
+
+			// $query = "INSERT INTO user (login, hash) VALUES('".$login."', '".$hash."')";
+			// $result = mysqli_query($db, $query);
+			// if ($result === false)
+			// 	$error = "Erreur interne au serveur";
+			// else
+			// {
+
+			// 	header('Location: login');
+			// 	exit;
+			// }
 		
 		}
 	}
@@ -69,26 +75,37 @@ else if ($action == 'modifPw')
 	{
 		if (isset($_POST['login'], $_POST['hash'], $_POST['confirm']))
 		{
-			$hash = $_POST['hash'];
-			$login = $_POST['login'];
-			$confirm = $_POST['confirm'];
-
-			$user = new User();
-			$user->setLogin($login);
-			$user->initPassword($hash, $confirm);
-
-			$login = mysqli_real_escape_string($db, $login);
-			$hash = mysqli_real_escape_string($db, $hash);
-
-			$query = "UPDATE user SET login='".$login."', ='".$hash."' WHERE id='".$_SESSION['id']."'";
-			$result = mysqli_query($db, $query);
-			if ($result === false)
-				$error = "Erreur interne au serveur";
-			else
+			try
 			{
-				header('Location: monCompte');
+				$user = $userManager->modif($_POST['login'],$_POST['hash'], $_POST['confirm']);
+				header('Location: login');
 				exit;
 			}
+			catch (Exception $e)
+			{
+				$error = $e->getMessage();
+			}
+			
+			// $hash = $_POST['hash'];
+			// $login = $_POST['login'];
+			// $confirm = $_POST['confirm'];
+
+			// $user = new User();
+			// $user->setLogin($login);
+			// $user->editPassword($hash, $confirm);
+
+			// $login = mysqli_real_escape_string($db, $login);
+			// $hash = mysqli_real_escape_string($db, $hash);
+
+			// $query = "UPDATE user SET login='".$login."', ='".$hash."' WHERE id='".$_SESSION['id']."'";
+			// $result = mysqli_query($db, $query);
+			// if ($result === false)
+			// 	$error = "Erreur interne au serveur";
+			// else
+			// {
+			// 	header('Location: monCompte');
+			// 	exit;
+			// }
 			
 		}
 	}	

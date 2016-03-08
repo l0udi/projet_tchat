@@ -1,10 +1,10 @@
 <?php
-require_once('models/User.class.php');
+
 
 session_start();
 
 $db = mysqli_connect("192.168.1.93", "Tchat_Gg", "tchatgg", "Tchat_Gg");
-$page = "";
+$page = "login";
 $access = ['login', 'create', 'logout', 'monCompte', 'tchat'];
 if (isset($_GET['page']))
 {
@@ -12,7 +12,7 @@ if (isset($_GET['page']))
 		$page = $_GET['page'];
 	else
 	{
-		header('Location: home');
+		header('Location: login');
 		exit;
 	}
 }
