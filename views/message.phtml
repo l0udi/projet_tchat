@@ -1,1 +1,1 @@
-<div class="well">[<?=htmlentities($message->getIdUser())?>] : <?=htmlentities($message->getContent())?> : <?=htmlentities($message->getDate())?></div>
+<div class="well">[<?=htmlentities($message->getUser()->getLogin())?>] : <?=htmlentities($message->getContent())?> : <?=htmlentities($message->getDate())?></div>

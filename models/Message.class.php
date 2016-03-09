@@ -3,21 +3,28 @@ class Message
 {
 	private $id;
 	private $id_user;
+	private $user;// propriété calculée -> composition // class User
 	private $content;
 	private $date;
+	private $db;
 
-	public function __construct()
+	public function __construct($db)
 	{
-		
+		$this->db = $db;
 	}
 
 	public function getId()
 	{
 		return $this->id;
 	}
-	public function getIdUser()
+	public function getUser()
 	{
-		return $this->id_user;
+		if ($this->user == null)
+		{
+			$manager = new UserManager($this->db);
+			$this->user = $manager->getById($this->id_user);
+		}
+		return $this->user;
 	}
 	public function getDate()
 	{
@@ -36,14 +43,10 @@ class Message
 		else
 			$this->content = $content;
 	}
-	public function setIdUser($id_user)
+	public function setUser(User $user)
 	{
-		if ($id_user > 0)
-			$this->id_user = $id_user;
-		else
-			throw new Exception("Auteur du message non trouve");
+		$this->user = $user;
+		$this->id_user = $user->getId();
 	}
-
-	
 }
 ?>

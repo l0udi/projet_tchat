@@ -7,20 +7,20 @@ class MessageManager
 	{
 		$this->db = $db;
 	}
-	public function create($content, $id_user)
+	public function create($content, User $user)
 	{
-		$message = new Message();
+		$message = new Message($this->db);
 		try
 		{
 			$message->setContent($content);
-			$message->setIdUser($id_user);
+			$message->setUser($user);
 		}
 		catch (Exception $e)
 		{
 			throw $e;
 		}
 		$content = mysqli_real_escape_string($this->db, $message->getContent());
-		$id_user = intval($message->getIdUser());
+		$id_user = intval($message->getUser()->getId());
 		$query = "INSERT INTO message (content, id_user) VALUES('".$content."', '".$id_user."')";
 		$result = mysqli_query($this->db, $query);
 		if ($result)
@@ -37,7 +37,7 @@ class MessageManager
 		if($res)
 		{
 			$messages = [];
-			while ($message = mysqli_fetch_object($res, 'Message'))
+			while ($message = mysqli_fetch_object($res, 'Message', [$this->db]))
 			{
 				$messages[] = $message;
 			}

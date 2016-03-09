@@ -28,6 +28,24 @@ class UserManager
 		else
 			throw new Exception("Erreur interne");
 	}
+	public function getById($id)
+	{
+		$id = intval($id);
+		$query = "SELECT * FROM user WHERE id='".$id."'";
+		$res = mysqli_query($this->db, $query);
+		if ($res)
+		{
+			$user = mysqli_fetch_object($res, "User");
+			if ($user)
+			{
+				return $user;
+			}
+			else
+				throw new Exception("Utilisateur non existant");
+		}
+		else
+			throw new Exception("Erreur interne");
+	}
 	public function create($login, $hash, $confirm)
 	{
 		$user = new User();

@@ -9,4 +9,5 @@ while ($count < $max)
 	require('views/message.phtml');
 	$count++;
 }
+// index.php -> apps/list.php
 ?>
