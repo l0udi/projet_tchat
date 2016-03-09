@@ -1,6 +1,12 @@
 <?php
-$query = "SELECT * FROM message LEFT JOIN user ON user.id=message.id_user ORDER BY message.id ASC";
-$res = mysqli_query($db, $query);
-while ($message = mysqli_fetch_assoc($res))
+$manager = new MessageManager($db);
+$list = $manager->getAll();
+$count = 0;
+$max = sizeof($list);
+while ($count < $max)
+{
+	$message = $list[$count];
 	require('views/message.phtml');
+	$count++;
+}
 ?>

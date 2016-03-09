@@ -30,24 +30,20 @@ class MessageManager
 		else
 			throw new Exception("Erreur interne");
 	}
-	// public function create($content)
-	// {
-	// 	$content = mysqli_real_escape_string($this->db, $content);
-	// 	$query = "INSERT INTO message (content, id_user) VALUES('".$content."', '".$_SESSION['id']."')";
-	// 	$result = mysqli_query($this->db, $query);
-	// 	if ($result)
-	// 	{
-	// 		$message = mysqli_fetch_object($result, "Message");
-	// 		if ($message)
-	// 		{
-	// 			return $message;
-	// 		}
-	// 		else
-	// 			throw new Exception("");
-	// 	}
-	// 	else
-	// 		throw new Exception("Erreur interne");
-	// }
-	
+	public function getAll()
+	{
+		$query = "SELECT * FROM message";
+		$res = mysqli_query($this->db, $query);
+		if($res)
+		{
+			$messages = [];
+			while ($message = mysqli_fetch_object($res, 'Message'))
+			{
+				$messages[] = $message;
+			}
+			return $messages;
+		}
+		else throw new Exception("erreur interne");
+	}
 }
 ?>
