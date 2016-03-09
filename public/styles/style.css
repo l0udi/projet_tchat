@@ -1,0 +1,40 @@
+.aCreerCompte{
+	text-decoration: none;
+	color: #fff;
+}
+.aCreerCompte:hover{
+	text-decoration: none;
+	color: #fff;
+}
+.navbar{
+	
+  	background-size: cover;
+ 	background-position: 50%;
+ 	background-color: rgba(0, 0, 0, 0.8);
+}
+.nav{
+	text-decoration: none;
+	color: #fff;
+	text-transform: capitalize;
+	font-size: 18px;
+}
+.nav:hover{
+	color: #000;
+}
+.panelFont{
+	border: 0 solid #5C5959;
+	color: #fff;
+	text-align: center;
+	font-size: 14px;
+	background-size: cover;
+ 	background-position: 50%;
+ 	background-color: #5C5959;
+ 	height: 40px;
+}
+.panel{
+	border: 1px solid #5C5959;
+}
+.btnSend{
+
+	background-color: #CCCCCC;
+}

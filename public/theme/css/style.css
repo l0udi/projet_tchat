@@ -16,7 +16,7 @@ body .menu {
   background: inherit;
 }
 body .menu .mainmenu {
-  background: url(https://newevolutiondesigns.com/images/freebies/city-wallpaper-18.jpg) no-repeat fixed;
+  background: url(http://bossfight.co/wp-content/uploads/2015/07/bossfight-stock-images-photos-photography-free-high-resolution-blurred-lights.jpg) no-repeat fixed;
   background-size: cover;
   background-position: 50%;
 }
@@ -102,6 +102,7 @@ body .article h1 {
   box-sizing: border-box;
 }
 
+
 .form {
   margin: 0 auto;
   position: fixed;
@@ -127,7 +128,7 @@ body .article h1 {
   position: absolute;
   left: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 .form:before {
   content: "";
