@@ -1,5 +1,16 @@
 <?php
 
+$error = '';
+spl_autoload_register(function($class)
+{
+    require('models/'.$class.'.class.php');
+});
+/*	AVANT :
+function __autoload($class)
+{
+    require('models/'.$class.'.class.php');
+}
+*/
 
 session_start();
 
@@ -16,7 +27,7 @@ if (isset($_GET['page']))
 		exit;
 	}
 }
-$traitements = ['login'=>'user','create'=>'user','logout'=>'user','monCompte'=>'user', 'tchat'=>'user'];
+$traitements = ['login'=>'user','create'=>'user','logout'=>'user','monCompte'=>'user', 'tchat'=>'message'];
 if (isset($traitements[$page]))
 	require('apps/traitement_'.$traitements[$page].'.php');
 
