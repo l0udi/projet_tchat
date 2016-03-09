@@ -24,11 +24,11 @@
                     <div class="panel-heading panelFont">
                         CHAT
                     </div>
-                <form method="POST">
+                <form method="POST" class="js_form">
                     <div class="panel-body"> 
                     <ul class="media-list">
                         <li class="media">
-                            <div class="media-body" >
+                            <div class="media-body js_list" >
                                 <?php require('apps/list.php'); ?>
                             </div>
                         </li>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="panel-footer">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Enter Message" name="content" />
+                            <input type="text" class="form-control js_in" placeholder="Enter Message" name="content" />
                             <span class="input-group-btn">
                                 <button class="btn btnSend" type="submit" name="action" value="sendMessage">SEND</button>
                             </span>
