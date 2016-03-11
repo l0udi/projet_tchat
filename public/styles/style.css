@@ -28,7 +28,7 @@
 	font-size: 14px;
 	background-size: cover;
  	background-position: 50%;
- 	background-color: #5C5959;
+ 	background-color: rgba(0, 0, 0, 0.8);
  	height: 40px;
 }
 .panel{
@@ -40,4 +40,68 @@
 }
 input{
 	font-size: 18px;
+}
+.scroll{
+	overflow-y: scroll;
+	height: 650px;
+}
+.fixed-bottom{
+	position: fixed;
+}
+.col-login{
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: capitalize;
+
+}
+.col-content{
+	font-size: 14px;
+	width: 320px;
+	word-wrap: break-word;
+}
+.col-heure{
+	font-size: 10px;
+}
+.rowConversation{
+	padding: 5px;
+}
+.online{
+	border-radius: 50%;
+	width: 7px;
+	display:inline-block;
+	height: 7px;
+	background-color: green;
+
+}
+h5
+{
+	display:inline-block;
+	margin-left: 10px !important ;
+	text-transform: capitalize;
+}
+.js_time{
+	margin-left: 20px !important ;
+}
+span{
+	border-radius: 50%;
+	width: 7px;
+	display:inline-block;
+	height: 7px;
+	background-color: red;
+}
+.panel-footer{
+	background-size: cover;
+ 	background-position: 50%;
+ 	background-color: rgba(0, 0, 0, 0.5);
+	border-top: 0 !important;
+}
+.margpanel{
+	margin-bottom: 0 !important;
+}
+th{
+	text-align: center;
+}
+.fonttd{
+	background: #fff;
+	color: #000;
 }

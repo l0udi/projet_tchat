@@ -9,6 +9,7 @@ class User
 	private $hash;
 	private $date;
 	private $admin;
+	private $active;
 
 	// Constructeur
 	public function __construct()
@@ -40,7 +41,10 @@ class User
 	{
 		return $this->admin;
 	}
-
+	public function isActive()// Un getter d'un booleen transforme le get en is
+	{
+		return $this->active;
+	}
 	// Liste des setters
 	public function setLogin($login)
 	{
@@ -58,7 +62,10 @@ class User
 		// OU
 		$this->admin = (bool)$admin;// (bool) permet de "caster" une variable en un type particulier, transformer n'importe quel type en booleen (ici)
 	}
-
+	public function setActive($active = true)
+	{
+		$this->active = (bool)$active;
+	}
 	// Liste des méthodes "autres"
 	// verifier password ?
 	public function verifPassword($password)

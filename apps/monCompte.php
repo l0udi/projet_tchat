@@ -1,12 +1,6 @@
 <?php
-if (isset($_SESSION['id']))
-{
-	$query = "SELECT * FROM user WHERE id='".$_SESSION['id']."'";
-	$result = mysqli_query($db, $query);
 
+require('views/monCompte.phtml');
 
-	$client = mysqli_fetch_assoc($result);
-	require('views/monCompte.phtml');
-}
 ?>
 

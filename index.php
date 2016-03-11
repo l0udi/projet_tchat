@@ -14,9 +14,25 @@ function __autoload($class)
 
 session_start();
 
-$db = mysqli_connect("192.168.1.93", "Tchat_Gg", "tchatgg", "Tchat_Gg");
-$page = "login";
-$access = ['login', 'create', 'logout', 'monCompte', 'tchat', 'list'];
+// $db = mysqli_connect("192.168.1.93", "Tchat_Gg", "tchatgg", "Tchat_Gg");
+
+try
+{
+    $db = new PDO('mysql:dbname=Tchat_Gg;host=192.168.1.93', 'Tchat_Gg', 'tchatgg');
+}
+catch (PDOException $e)
+{
+    $error = 'Erreur interne';
+}
+
+if (isset($_SESSION['id']))
+{
+	$manager = new UserManager($db);
+	$manager->updateCurrentUser();
+}
+
+$page = "page";
+$access = ['login', 'create', 'logout', 'monCompte', 'tchat', 'list', 'list_user', 'gestion_user', 'gestion_message'];
 if (isset($_GET['page']))
 {
 	if (in_array($_GET['page'], $access))
@@ -27,7 +43,10 @@ if (isset($_GET['page']))
 		exit;
 	}
 }
-$traitements = ['login'=>'user','create'=>'user','logout'=>'user','monCompte'=>'user', 'tchat'=>'message'];
+
+
+
+$traitements = ['login'=>'user','create'=>'user','logout'=>'user','monCompte'=>'user', 'tchat'=>'message', 'gestion_user'=>'admin', 'gestion_message'=>'admin'];
 if (isset($traitements[$page]))
 	require('apps/traitement_'.$traitements[$page].'.php');
 if (isset($_GET['ajax']))

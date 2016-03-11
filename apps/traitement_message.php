@@ -1,6 +1,4 @@
 <?php
-require('models/Message.class.php');
-require('models/MessageManager.class.php');
 
 if (isset($_POST['action']))
 {

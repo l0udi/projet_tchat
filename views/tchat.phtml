@@ -3,16 +3,15 @@
     <br/>
     <br/>
         <div class="col-md-4">
-            <div class="panel">
                     <div class="panel-heading panelFont">
                         CONTACTS
                     </div>
+            <div class="panel">
                 <div class="panel-body">
                 <ul class="media-list">
                     <li class="media">
-                        <div class="media-body" >
-                            <h5><?=htmlentities($_SESSION['login']);?></h5>
-                            <small class="text-muted">date de connexion</small>
+                        <div class="media-body js_list_user">
+                            <?php require('apps/list_user.php'); ?>
                         </div>
                     </li>                    
             	</ul>
@@ -20,30 +19,32 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="panel">
                     <div class="panel-heading panelFont">
                         CHAT
                     </div>
+            <div class="panel margpanel">
                 <form method="POST" class="js_form">
-                    <div class="panel-body"> 
-                    <ul class="media-list">
-                        <li class="media">
-                            <div class="media-body js_list" >
-                                <?php require('apps/list.php'); ?>
-                            </div>
-                        </li>
-                    </ul>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="input-group">
-                            <input type="text" class="form-control js_in" placeholder="Enter Message" name="content" />
-                            <span class="input-group-btn">
-                                <button class="btn btnSend" type="submit" name="action" value="sendMessage">SEND</button>
-                            </span>
+                    <div class="scroll" id="scroll">
+                        <div class="panel-body"> 
+                        <ul class="media-list">
+                            <li class="media">
+                                <div class="media-body js_list" >
+                                    <?php require('apps/list.php'); ?>
+                                </div>
+                            </li>
+                        </ul>
                         </div>
                     </div>
-                </form>
             </div>
+                        <div class="panel-footer">
+                            <div class="input-group ">
+                                <input type="text" class="form-control js_in fixed-bottom" placeholder="Enter Message" name="content" />
+                                <span class="input-group-btn">
+                                    <button class="btn btnSend" type="submit" name="action" value="sendMessage">SEND</button>
+                                </span>
+                            </div>
+                        </div>
+                </form>
         </div>
     </div>
 </div>

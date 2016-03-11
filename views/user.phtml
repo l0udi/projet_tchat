@@ -1,0 +1,8 @@
+<div>
+	<span class="<?=$connected?> "></span>
+	<h5 style="font-size: 16px;"><?=htmlentities($user->getLogin())?></h5>
+	<div>
+		<small class="text-muted js_time"><?=htmlentities(strtotime($user->getDate()))?></small>
+	</div>
+</div>
+<hr/>

@@ -1,0 +1,12 @@
+<tr class="fonttd">
+	<td><?php echo htmlentities ($user->getLogin());?></td>
+	<td><?php echo htmlentities($user->isAdmin());?></td>
+	<td><?php echo htmlentities($user->getDate());?></td>
+<td>
+		<form method="POST">
+			<input type="hidden" name="userid" value="<?=$user->getId()?>">
+			<input type="hidden" name="action" value="activer_user">
+			<button type="submit" class="submit" style="width:100%; color:#000;" name="isActive" value="<?=$buttonvalue?>"><?=$buttontext?></button>
+		</form>
+</td>
+</tr>

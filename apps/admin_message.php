@@ -15,7 +15,7 @@ while ($count < $max)
 		$format = $heure;
 	else
 		$format = $date.' '.$heure;
-	require('views/message.phtml');
+	require('views/admin_message.phtml');
 	$count++;
 }
 ?>

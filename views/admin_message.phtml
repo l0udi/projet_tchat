@@ -1,0 +1,11 @@
+<tr class="fonttd">
+	<td><?php echo htmlentities ($message->getUser()->getLogin())?></td>
+	<td><?php echo htmlentities ($message->getContent())?></td>
+	<td><?php echo htmlentities ($format)?></td>
+<td>
+		<form method="POST">
+			<input type="hidden" value="<?=$message->getId()?>" name="supprimer">
+			<button type="submit" class="submit" style="width:100%; color:#000;" name="action" value="supprimer">Supprimer</button>
+		</form>
+	</td>
+</tr>

@@ -3,8 +3,6 @@
 if (isset($_POST['action']))
 {
 	$action = $_POST['action'];
-	require('models/User.class.php');
-	require('models/UserManager.class.php');
 	$userManager = new UserManager($db);
 
 	if ($action == 'login')
@@ -73,11 +71,11 @@ if (isset($_POST['action']))
 // -------------MODIFICATION DU COMPTE (LOGIN)-------------
 else if ($action == 'modifPw')
 	{
-		if (isset($_POST['login'], $_POST['hash'], $_POST['confirm']))
+		if (isset($_POST['login'], $_POST['oldpassword'],$_POST['newPassword1'],$_POST['newPassword2']))
 		{
 			try
 			{
-				$user = $userManager->modif($_POST['login'],$_POST['hash'], $_POST['confirm']);
+				$user = $userManager->edit($_POST['login'],$_POST['oldpassword'],$_POST['newPassword1'],$_POST['newPassword2']);
 				header('Location: login');
 				exit;
 			}
